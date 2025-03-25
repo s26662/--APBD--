@@ -14,9 +14,15 @@ public class Container
     //Konstruktor 
     public Container(string type)
     {
-        SerialNumber = $"KON-{type}-{++counter:D5}";
+        SerialNumber = GenerateSerialNumber(type);
     }
 
+    //Generowanie SerialNumber
+    public static string GenerateSerialNumber(string type)
+    {
+        counter++;
+        return $"KON-{type}-{counter:D5}";
+    }
     
-    
+
 }
