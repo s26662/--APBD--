@@ -1,0 +1,15 @@
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\bin\Debug\net8.0\Cwiczenie_2.exe
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\bin\Debug\net8.0\Cwiczenie_2.deps.json
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\bin\Debug\net8.0\Cwiczenie_2.runtimeconfig.json
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\bin\Debug\net8.0\Cwiczenie_2.dll
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\bin\Debug\net8.0\Cwiczenie_2.pdb
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\Cwiczenie_2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\Cwiczenie_2.AssemblyInfoInputs.cache
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\Cwiczenie_2.AssemblyInfo.cs
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\Cwiczenie_2.csproj.CoreCompileInputs.cache
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\Cwiczenie_2.sourcelink.json
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\Cwiczenie_2.dll
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\refint\Cwiczenie_2.dll
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\Cwiczenie_2.pdb
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\Cwiczenie_2.genruntimeconfig.cache
+C:\Users\olafc\Desktop\--APBD--\Cwiczenie_2\Cwiczenie_2\obj\Debug\net8.0\ref\Cwiczenie_2.dll
