@@ -24,5 +24,11 @@ public class Container
         return $"KON-{type}-{counter:D5}";
     }
     
+    //Opróżnianie Contenera
+    public virtual void EmptyContainer()
+    {
+        WeightOfCargo = 0.0;
+    }
+    
 
 }
