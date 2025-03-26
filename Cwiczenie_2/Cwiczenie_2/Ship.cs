@@ -6,9 +6,9 @@ public class Ship
     public string Name { get; set; }
     public double MaxSpeed { get; set; }
     public int MaxNumberOfContainers { get; set; }
-    public int MaxWeightOfContainers { get; set; }
+    public double MaxWeightOfContainers { get; set; }
 
-    public Ship(string name, double maxSpeed, int maxNumberOfContainers, int maxWeightOfContainers)
+    public Ship(string name, double maxSpeed, int maxNumberOfContainers, double maxWeightOfContainers)
     {
         Name = name;
         MaxSpeed = maxSpeed;
@@ -24,6 +24,10 @@ public class Ship
         }
         _containers.Add(container);
     }
-    
-    
+
+    public override string ToString()
+    {
+        return
+            $"{Name} (speed = {MaxSpeed}, max containers = {MaxNumberOfContainers}, max weight = {MaxWeightOfContainers})";
+    }
 }
