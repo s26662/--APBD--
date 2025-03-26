@@ -19,7 +19,8 @@ public class CoolingContainer : Container,IHazardNotifier
         { "Eggs", 19 }
     };
     
-    public CoolingContainer(string typeOfProduct, double temperature) : base("C")
+    public CoolingContainer(string typeOfProduct, double temperature, double height, double depth, 
+        double containerWeight, double maxLoad) : base("C", height, depth, containerWeight, maxLoad)
     {
         if(!ProdcutsTemperatures.ContainsKey(typeOfProduct))
         {

@@ -12,9 +12,14 @@ public class Container
 
 
     //Konstruktor 
-    public Container(string type)
+    public Container(string type, double height, double depth, double containerWeight, double maxLoad)
     {
         SerialNumber = GenerateSerialNumber(type);
+        WeightOfCargo = 0.0;
+        Height = height;
+        Depth = depth;
+        ContainerWeight = containerWeight;
+        MaxLoad = maxLoad;
     }
 
     //Generowanie SerialNumber
@@ -47,6 +52,12 @@ public class Container
         WeightOfCargo = 0.0;
         Console.WriteLine($"Kontener {SerialNumber} został opróżniony");
     }
-    
+
+    public virtual string ToString()
+    {
+        return
+            $"{SerialNumber} (Masa ładunku={WeightOfCargo}kg, Wysokość={Height}cm, Głębokość={Depth}cm, Waga={ContainerWeight}kg, Maksymalna ładowność={MaxLoad}kg )";
+    }
+
 
 }
