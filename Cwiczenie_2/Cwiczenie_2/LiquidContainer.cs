@@ -1,6 +1,6 @@
 ﻿namespace Cwiczenie_2;
 
-public class LiquidContainer : Container
+public class LiquidContainer : Container, IHazardNotifier
 {
     private bool IsHazardous { get; set;}
 
@@ -21,6 +21,10 @@ public class LiquidContainer : Container
        WeightOfCargo = weight;
        Console.WriteLine($"Załadowano {weight} kg do kontenera {SerialNumber}");
     }
-    
-    
+
+
+    public void NotifyHazard(string message)
+    {
+        throw new NotImplementedException();
+    }
 }
