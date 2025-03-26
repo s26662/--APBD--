@@ -15,6 +15,15 @@ public class Ship
         MaxNumberOfContainers = maxNumberOfContainers;
         MaxWeightOfContainers = maxWeightOfContainers;
     }
-    
 
+    public void LoadShip(Container container)
+    {
+        if (_containers.Count < MaxNumberOfContainers || _containers.Sum(c => c.WeightOfCargo) < MaxWeightOfContainers)
+        {
+            throw new Exception($"Statek {container} osiągnął limit kontenerów lub wagi");
+        }
+        _containers.Add(container);
+    }
+    
+    
 }
