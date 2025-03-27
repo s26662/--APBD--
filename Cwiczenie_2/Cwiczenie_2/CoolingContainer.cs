@@ -32,6 +32,7 @@ public class CoolingContainer : Container,IHazardNotifier
             throw new ArgumentException($"Temperatura nie może być niższa nic {ProdcutsTemperatures[typeOfProduct]}C, dla produktu {typeOfProduct}");
         }
     }
+    
 
     public void NotifyHazard(string message)
     {

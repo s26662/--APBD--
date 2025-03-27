@@ -18,16 +18,35 @@ public class Ship
 
     public void LoadShip(Container container)
     {
-        if (_containers.Count < MaxNumberOfContainers || _containers.Sum(c => c.WeightOfCargo) < MaxWeightOfContainers)
+        if (_containers.Count >= MaxNumberOfContainers || _containers.Sum(c => c.WeightOfCargo) >= MaxWeightOfContainers)
         {
             throw new Exception($"Statek {container} osiągnął limit kontenerów lub wagi");
         }
         _containers.Add(container);
     }
 
-    public void UnloadShip(Container container)
+    public void LoadShips(List<Container> containers)
+    {
+        foreach (var container in containers)
+        {
+            LoadShip(container);
+        }
+    }
+
+    public void RemoveContainer(Container container)
     {
         _containers.Remove(container);
+    }
+
+    public void MoveConatiner(Ship ship1, Ship ship2, string serialNumberContainer)
+    {
+        //implementacja logiki
+        
+    }
+
+    public void SwapContainers(Container oldSerial, Container newSerial)
+    {
+        //implementacja logiki
     }
 
     public override string ToString()
