@@ -5,7 +5,7 @@ public class CoolingContainer : Container,IHazardNotifier
     public string TypeOfProduct { get; set; }
     public double Temperature { get; set; }
 
-    private static Dictionary<string, double> ProdcutsTemperatures = new()
+    public static Dictionary<string, double> ProdcutsTemperatures = new()
     {
         { "Bananas", 13.3 },
         { "Chocolate", 18 },

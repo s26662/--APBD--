@@ -20,7 +20,7 @@ public class LiquidContainer : Container, IHazardNotifier
        }
        
        WeightOfCargo = weight;
-       Console.WriteLine($"Załadowano {weight} kg do kontenera {SerialNumber}");
+       Console.WriteLine($"Załadowano {weight}kg do kontenera {SerialNumber}");
     }
 
 
