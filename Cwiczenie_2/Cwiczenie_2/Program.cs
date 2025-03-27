@@ -125,26 +125,26 @@ public class Program
                     Console.WriteLine("Podaj SerialNumber kontenera: ");
                     string serialNumber = Console.ReadLine();
                     Container foundContainer = containers.Find(x => x.SerialNumber == serialNumber);
-                    string splitType = serialNumber.Split('-')[1];
+                    //string splitType = serialNumber.Split('-')[1];
                     if (foundContainer != null)
                     {
-                        if (splitType == "L")
+                        if (serialNumber.Split('-')[1] == "L" && foundContainer is LiquidContainer liquidContainer)
                         {
                             Console.WriteLine("Podaj rodzaj płynu: ");
                             string liqudi = Console.ReadLine();
                             Console.WriteLine("Podaj ilość płynu: ");
                             double amountOfLiqudi = double.Parse(Console.ReadLine());
-                            foundContainer.LoadContainer(amountOfLiqudi);
+                            liquidContainer.LoadContainer(amountOfLiqudi);
                             Console.WriteLine($"Załadowano {liqudi} w ilości {amountOfLiqudi} do kontenera {serialNumber}");
                         }
-                        else if (splitType == "G")
+                        else if (serialNumber.Split('-')[1] =="G" && foundContainer is GasContainer gasContainer)
                         {
                             Console.WriteLine("Podaj ilośc Gazu do załadowania: ");
                             double amountOfGas = double.Parse(Console.ReadLine());
-                            foundContainer.LoadContainer(amountOfGas);
+                            gasContainer.LoadContainer(amountOfGas);
                             Console.WriteLine($"Załadowano gaz w ilości {amountOfGas} do kontenera {serialNumber}");
                         }
-                        else if (splitType == "C")
+                        else if (serialNumber.Split('-')[1] == "C" && foundContainer is CoolingContainer coolingContainer)
                         {
                             Console.WriteLine("Podaj temeprature kontenera: ");
                             double temperature = double.Parse(Console.ReadLine());
@@ -157,7 +157,7 @@ public class Program
                                 double requiredTemperature = CoolingContainer.ProdcutsTemperatures[productToLoad];
                                 if (temperature > requiredTemperature)
                                 {
-                                    foundContainer.LoadContainer(amountOfProduct);
+                                    coolingContainer.LoadContainer(amountOfProduct);
                                     Console.WriteLine($"Załadowano {productToLoad} w ilości {amountOfProduct} do kontenera {serialNumber}. Temperatura kontenera: {temperature}");
                                 }
                                 else
@@ -186,7 +186,35 @@ public class Program
                     
                     break;
                 case "6":
-                    //Dodać logike na rozładowanie statku
+                    Console.Clear();
+                    foreach (var container in containers)
+                    {
+                        Console.WriteLine(container.ToString());
+                    }
+                    Console.WriteLine("Podaj SerialNumber kontenera: ");
+                    string serialNumber2 = Console.ReadLine();
+                    Container foundContainer2 = containers.Find(x => x.SerialNumber == serialNumber2);
+                    if (foundContainer2 != null)
+                    {
+                        if (serialNumber2.Split('-')[1] == "L" && foundContainer2 is LiquidContainer liquidContainer)
+                        {
+                            liquidContainer.EmptyContainer();
+                        }else if (serialNumber2.Split('-')[1] == "G" && foundContainer2 is GasContainer gasContainer)
+                        {
+                            gasContainer.EmptyContainer();
+                        }else if (serialNumber2.Split('-')[1] == "C" && foundContainer2 is CoolingContainer coolingContainer)
+                        {
+                            coolingContainer.EmptyContainer();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nie znany typ kontera");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nie znaleziono kontenera");
+                    }
                     break;
                 case "7":
                     //Logika na usunięcie kontera ze statku ale nie z listy
