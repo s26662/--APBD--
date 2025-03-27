@@ -250,13 +250,129 @@ public class Program
 
                     break;
                 case "7":
-                    //Logika na usunięcie kontera ze statku ale nie z listy
+                    Console.Clear();
+                    Console.WriteLine("Podaj nazwę statku: ");
+                    string shipName1 = Console.ReadLine();
+                    Ship foundShipToLoad1 = ships.Find(x => x.Name == shipName1);
+                    if (foundShipToLoad1 != null)
+                    {
+                        Console.WriteLine("Podaj SerialNumber kontenera: ");
+                        string serialNumberContainer = Console.ReadLine();
+                        Container foundContainerToLoad = containers.Find(x => x.SerialNumber == serialNumberContainer);
+                        if (foundContainerToLoad != null)
+                        {
+                            foundShipToLoad1.UnloadShip(foundContainerToLoad);
+                            containers.Add(foundContainerToLoad);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nie znaleziono kontenera");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nie znaleziono statku");
+                    }
                     break;
                 case "8":
                     //logika na zmianę kontenera z listy(chodzi o to że podaje serialNo i zamieniam go z tym co jest już na statku)
+                    Console.Clear();
+                    foreach (var ship in ships)
+                    {
+                        Console.WriteLine(ship.ToString());
+                    }
+                    Console.WriteLine("Podaj nazwę statku: ");
+                    string nameOfShip = Console.ReadLine();
+                    Ship foundShipToChange = ships.Find(x => x.Name == nameOfShip);
+                    if (foundShipToChange != null)
+                    {
+                            Console.WriteLine("Lista Konternerów które sa na statku: ");
+                            foreach (var container in foundShipToChange._containers)
+                            {
+                                Console.WriteLine(container.ToString());
+                            }
+                            Console.WriteLine("Podaj Serial Number kontenera do wymiany: ");
+                            string firstConatinerChange = Console.ReadLine();
+                            Container? firstFoundContainer = foundShipToChange._containers.Find(x => x.SerialNumber == firstConatinerChange);
+                            
+                            Console.WriteLine("Lista dostępnych Konternerów: ");
+                            foreach (var container in containers)
+                            {
+                                Console.WriteLine(container.ToString());
+                            }
+                            Console.WriteLine("Podaj Serial Number kontener który ma być wymieniony: ");
+                            string secondConatinerChange = Console.ReadLine();
+                            Container secondFoundContainer = containers.Find(x => x.SerialNumber == secondConatinerChange);
+                            
+                            
+                            foundShipToChange._containers.Remove(firstFoundContainer);
+                            containers.Add(firstFoundContainer);
+                            containers.Remove(secondFoundContainer);
+                            foundShipToChange._containers.Add(secondFoundContainer);
+                            
+                            Console.WriteLine($"Zamieniono kontenery {firstFoundContainer} <--> {secondFoundContainer} na statku {foundShipToChange}.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nie znaleziono statku");
+                    }
                     break;
                 case "9":
-                    //logika na przeniesienie kontenera na inny statek
+                    Console.Clear();
+                    foreach (var ship in ships)
+                    {
+                        Console.WriteLine(ship.ToString());
+                    }
+                    Console.WriteLine("Podaj nazwę pierwszego statku: ");
+                    string firstShip = Console.ReadLine();
+                    Ship foundShipToLoad2 = ships.Find(x => x.Name == firstShip);
+                    if (foundShipToLoad2 != null)
+                    {
+                        Console.WriteLine("Podaj nazwę drugiego statku: ");
+                        string secondShip = Console.ReadLine();
+                        Ship foundShipToLoad3 = ships.Find(x => x.Name == secondShip);
+
+                        if (foundShipToLoad3 != null)
+                        {
+                            Console.WriteLine("Lista Konternerów z pierwszego statku: ");
+                            foreach (var container in foundShipToLoad2._containers)
+                            {
+                                Console.WriteLine(container.ToString());
+                            }
+                            Console.WriteLine("Podaj Serial Number kontener do przeniesienia z pierwszego statku: ");
+                            string firstMoveContainer = Console.ReadLine();
+                            Container? firstFoundContainer = foundShipToLoad2._containers.Find(x => x.SerialNumber == firstMoveContainer);
+                            
+                            Console.WriteLine("Lista Konternerów z drugiego statku: ");
+                            foreach (var container in foundShipToLoad3._containers)
+                            {
+                                Console.WriteLine(container.ToString());
+                            }
+                            Console.WriteLine("Podaj Serial Number kontener do przeniesienia z drugiego statku: ");
+                            string secondMoveContainer = Console.ReadLine();
+                            Container? secondFoundContainer = foundShipToLoad2._containers.Find(x => x.SerialNumber == secondMoveContainer);
+                            
+                            double firstShipWeight = foundShipToLoad2._containers.Sum(c => c.ContainerWeight) - firstFoundContainer.ContainerWeight + secondFoundContainer.ContainerWeight;
+                            double secondShipWeight = foundShipToLoad3._containers.Sum(c => c.ContainerWeight) - secondFoundContainer.ContainerWeight + firstFoundContainer.ContainerWeight;
+                            
+                            if (firstShipWeight > foundShipToLoad2.MaxWeightOfContainers || secondShipWeight > foundShipToLoad3.MaxWeightOfContainers) {
+                                Console.WriteLine("Zamiana niemożliwa - przekroczono maksymalną wagę jednego ze statków.");
+                                break;
+                            }
+                            
+                            foundShipToLoad2._containers.Remove(firstFoundContainer);
+                            foundShipToLoad3._containers.Add(firstFoundContainer);
+                            
+                            foundShipToLoad3._containers.Remove(secondFoundContainer);
+                            foundShipToLoad2._containers.Add(secondFoundContainer);
+                            
+                            Console.WriteLine($"Zamieniono kontenery {firstFoundContainer} <--> {secondFoundContainer} między statkami {foundShipToLoad2} i {foundShipToLoad3}.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nie znaleziono statku");
+                        }
+                    }
                     break;
                 case "10":
                     //zwrócić informacje o kontenerze

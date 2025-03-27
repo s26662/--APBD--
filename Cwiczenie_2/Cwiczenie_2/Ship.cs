@@ -2,7 +2,7 @@
 
 public class Ship
 {
-    private List<Container> _containers = new List<Container>();
+    public List<Container> _containers = new List<Container>();
     public string Name { get; set; }
     public double MaxSpeed { get; set; }
     public int MaxNumberOfContainers { get; set; }
@@ -23,6 +23,11 @@ public class Ship
             throw new Exception($"Statek {container} osiągnął limit kontenerów lub wagi");
         }
         _containers.Add(container);
+    }
+
+    public void UnloadShip(Container container)
+    {
+        _containers.Remove(container);
     }
 
     public override string ToString()
