@@ -128,7 +128,6 @@ public class Program
                     Console.WriteLine("Podaj SerialNumber kontenera: ");
                     string serialNumber = Console.ReadLine();
                     Container foundContainer = containers.Find(x => x.SerialNumber == serialNumber);
-                    //string splitType = serialNumber.Split('-')[1];
                     if (foundContainer != null)
                     {
                         if (serialNumber.Split('-')[1] == "L" && foundContainer is LiquidContainer liquidContainer)
@@ -275,7 +274,6 @@ public class Program
                     }
                     break;
                 case "8":
-                    //logika na zmianę kontenera z listy(chodzi o to że podaje serialNo i zamieniam go z tym co jest już na statku)
                     Console.Clear();
                     foreach (var ship in ships)
                     {
@@ -375,10 +373,32 @@ public class Program
                     }
                     break;
                 case "10":
-                    //zwrócić informacje o kontenerze
+                    Console.Clear();
+                    Console.WriteLine("Podaj SerialNumber kontenera: ");
+                    string serialNumberC = Console.ReadLine();
+                    Container foundContainerToInfo = containers.Find(x => x.SerialNumber == serialNumberC);
+                    if (foundContainerToInfo != null)
+                    {
+                        foundContainerToInfo.ToString();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nie znaleziono kontenera");
+                    }
                     break;
                 case "11":
-                    //zwrócić informacje o statku i jaki ładunek przewozi
+                    Console.Clear();
+                    Console.WriteLine("Podaj nazwę statku: ");
+                    string shipNameToInfo = Console.ReadLine();
+                    Ship foundShipNameToInfo = ships.Find(x => x.Name == shipNameToInfo);
+                    if (foundShipNameToInfo != null)
+                    {
+                        foundShipNameToInfo.ToString();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nie znaleziono statku");
+                    }
                     break;
                 case "12":
                     running = false;
