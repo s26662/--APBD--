@@ -9,19 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="65ddd87f-8ae4-4f4b-b6b8-0350f36c4cc2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Cwiczenie_2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Cwiczenie_2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/LiquidContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/LiquidContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cwiczenie_2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/ref/Cwiczenie_2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/ref/Cwiczenie_2.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/refint/Cwiczenie_2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/refint/Cwiczenie_2.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
