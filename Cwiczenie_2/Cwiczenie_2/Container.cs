@@ -21,15 +21,13 @@ public class Container
         ContainerWeight = containerWeight;
         MaxLoad = maxLoad;
     }
-
-    //Generowanie SerialNumber
+    
     public static string GenerateSerialNumber(string type)
     {
         counter++;
         return $"KON-{type}-{counter:D5}";
     }
     
-    //Ładowanie kontenera
     public virtual void LoadContainer(double weight)
     {
         if (WeightOfCargo + weight > MaxLoad)
@@ -40,8 +38,7 @@ public class Container
         WeightOfCargo += weight;
         Console.WriteLine($"Załadowano {weight} kg do kontenera {SerialNumber}");
     }
-
-    //Opróżnianie Contenera
+    
     public virtual void EmptyContainer()
     {
         if (WeightOfCargo == 0)
@@ -59,5 +56,6 @@ public class Container
             $"{SerialNumber} (Masa ładunku={WeightOfCargo}kg, Wysokość={Height}cm, Głębokość={Depth}cm, Waga={ContainerWeight}kg, Maksymalna ładowność={MaxLoad}kg)";
     }
 
+  
 
 }

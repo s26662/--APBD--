@@ -39,7 +39,7 @@ public class Program
         ship1.MoveConatiner(ship1,ship2,"KON-C-00001");
         
         //9.Przeniesienie kontenera
-        ship2.SwapContainers(liquidContainer, coolingContainer);
+        Ship.SwapContainers(ship1,ship2,"KON-L-00001",KON-C-00001);
         
         // 10. Wypisanie informacji o kontenerze CoolingContainer
         Console.WriteLine(coolingContainer.ToString());
@@ -53,8 +53,6 @@ public class Program
             Console.WriteLine(container.ToString());            
         }*/
         
-
-
           List<Container> containers = new List<Container>();
           List<Ship> ships = new List<Ship>();
           bool running = true;
@@ -84,7 +82,7 @@ public class Program
               {
                   foreach (var container in containers)
                   {
-                      Console.WriteLine(container.ToString());
+                      Console.WriteLine(container.SerialNumber);
                   }
               }
 
@@ -121,12 +119,12 @@ public class Program
                       int speed = int.Parse(Console.ReadLine());
 
                       Console.WriteLine("Maksymalna liczba kontenerów: ");
-                      double amount = double.Parse(Console.ReadLine());
+                      int amount = int.Parse(Console.ReadLine());
 
                       Console.WriteLine("Maksymalna waga konterów: ");
                       double weight = double.Parse(Console.ReadLine());
 
-                      Ship newShip = new Ship(name, amount, speed, weight);
+                      Ship newShip = new Ship(name, speed, amount ,weight);
                       ships.Add(newShip);
                       Console.WriteLine($"\nDodano nowy kontenerowiec: {name}");
                       break;
@@ -166,7 +164,33 @@ public class Program
                       Console.WriteLine("Maksymalna ładowność kontenera: ");
                       double maxLoad = double.Parse(Console.ReadLine());
 
-                      Container newContainer = new Container(type, height, depth, containerWeight, maxLoad);
+                      Container newContainer;
+
+                      switch (type)
+                      {
+                          case "L": // LiquidContainer
+                              Console.WriteLine("Czy kontener jest niebezpieczny? (true/false): ");
+                              bool isHazardous = bool.Parse(Console.ReadLine());
+                              newContainer = new LiquidContainer(isHazardous, height, depth, containerWeight, maxLoad);
+                              break;
+
+                          case "G": // GasContainer
+                              Console.WriteLine("Ciśnienie kontenera: ");
+                              double pressure = double.Parse(Console.ReadLine());
+                              newContainer = new GasContainer(pressure, height, depth, containerWeight, maxLoad);
+                              break;
+
+                          case "C": // CoolingContainer
+                              Console.WriteLine("Podaj Typ produktu: ");
+                              string product = Console.ReadLine();
+                              Console.WriteLine("Temperatura maksymalna dla kontenera: ");
+                              double maxTemperature = double.Parse(Console.ReadLine());
+                              newContainer = new CoolingContainer(product,maxTemperature, height, depth, containerWeight, maxLoad);
+                              break;
+                          default:
+                              Console.WriteLine("Nieznany typ kontenera. Nie można utworzyć kontenera.");
+                              return;
+                      }
                       containers.Add(newContainer);
                       Console.WriteLine($"\nDodano nowy kontener: {newContainer.SerialNumber}");
                       break;
@@ -179,82 +203,142 @@ public class Program
 
                       Console.WriteLine("Podaj SerialNumber kontenera: ");
                       string serialNumber = Console.ReadLine();
-                      Container foundContainer = containers.Find(x => x.SerialNumber == serialNumber);
+                      Container foundContainer = containers.FirstOrDefault(x => x.SerialNumber == serialNumber);
+
                       if (foundContainer != null)
                       {
-                          if (serialNumber.Split('-')[1] == "L" && foundContainer is LiquidContainer liquidContainer)
+                          var match = System.Text.RegularExpressions.Regex.Match(serialNumber, @"KON-([A-Z])-\d+");
+                          if (match.Success)
                           {
-                              Console.WriteLine("Podaj rodzaj płynu: ");
-                              string liqudi = Console.ReadLine();
-                              Console.WriteLine("Podaj ilość płynu: ");
-                              double amountOfLiqudi = double.Parse(Console.ReadLine());
-                              liquidContainer.LoadContainer(amountOfLiqudi);
-                              Console.WriteLine(
-                                  $"Załadowano {liqudi} w ilości {amountOfLiqudi} do kontenera {serialNumber}");
-                          }
-                          else if (serialNumber.Split('-')[1] == "G" && foundContainer is GasContainer gasContainer)
-                          {
-                              Console.WriteLine("Podaj ilośc Gazu do załadowania: ");
-                              double amountOfGas = double.Parse(Console.ReadLine());
-                              gasContainer.LoadContainer(amountOfGas);
-                              Console.WriteLine($"Załadowano gaz w ilości {amountOfGas} do kontenera {serialNumber}");
-                          }
-                          else if (serialNumber.Split('-')[1] == "C" &&
-                                   foundContainer is CoolingContainer coolingContainer)
-                          {
-                              Console.WriteLine("Podaj temeprature kontenera: ");
-                              double temperature = double.Parse(Console.ReadLine());
-                              Console.WriteLine("Podaj nazwę produkut do załadowania: ");
-                              string productToLoad = Console.ReadLine();
-                              Console.WriteLine("Podaj ilość produktu do załadowania:");
-                              double amountOfProduct = double.Parse(Console.ReadLine());
-                              if (CoolingContainer.ProdcutsTemperatures.ContainsKey(productToLoad))
+                              string containerType = match.Groups[1].Value;
+
+                              switch (containerType)
                               {
-                                  double requiredTemperature = CoolingContainer.ProdcutsTemperatures[productToLoad];
-                                  if (temperature > requiredTemperature)
-                                  {
-                                      coolingContainer.LoadContainer(amountOfProduct);
-                                      Console.WriteLine(
-                                          $"Załadowano {productToLoad} w ilości {amountOfProduct} do kontenera {serialNumber}. Temperatura kontenera: {temperature}");
-                                  }
-                                  else
-                                  {
-                                      Console.WriteLine(
-                                          "Nie można załadować tego produktu, temperatura kontenera jest za niska");
-                                  }
-                              }
-                              else
-                              {
-                                  Console.WriteLine("Nie znaleziono tego produktu");
+                                  case "L":
+                                      if (foundContainer is LiquidContainer liquidContainer)
+                                      {
+                                          Console.WriteLine("Podaj rodzaj płynu: ");
+                                          string liquid = Console.ReadLine();
+                                          Console.WriteLine("Podaj ilość płynu: ");
+                                          if (double.TryParse(Console.ReadLine(), out double amountOfLiquid))
+                                          {
+                                              liquidContainer.LoadContainer(amountOfLiquid);
+                                              Console.WriteLine($"Załadowano {liquid} w ilości {amountOfLiquid} do kontenera {serialNumber}");
+                                          }
+                                          else
+                                          {
+                                                Console.WriteLine("Nieprawidłowa ilość płynu.");
+                                          }
+                                      }
+                                      else
+                                      {
+                                          Console.WriteLine("Kontener nie jest typu LiquidContainer.");
+                                      }
+                                      break;
+
+                                    case "G":
+                                        if (foundContainer is GasContainer gasContainer)
+                                        {
+                                            Console.WriteLine("Podaj ilość gazu do załadowania: ");
+                                            if (double.TryParse(Console.ReadLine(), out double amountOfGas))
+                                            {
+                                                gasContainer.LoadContainer(amountOfGas);
+                                                Console.WriteLine($"Załadowano gaz w ilości {amountOfGas} do kontenera {serialNumber}");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Nieprawidłowa ilość gazu.");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Kontener nie jest typu GasContainer.");
+                                        }
+                                        break;
+
+                                    case "C":
+                                        if (foundContainer is CoolingContainer coolingContainer)
+                                        {
+                                            Console.WriteLine("Podaj temperaturę kontenera: ");
+                                            if (double.TryParse(Console.ReadLine(), out double temperature))
+                                            {
+                                                Console.WriteLine("Podaj nazwę produktu do załadowania: ");
+                                                string productToLoad = Console.ReadLine();
+                                                Console.WriteLine("Podaj ilość produktu do załadowania:");
+                                                if (double.TryParse(Console.ReadLine(), out double amountOfProduct))
+                                                {
+                                                    if (CoolingContainer.ProdcutsTemperatures.ContainsKey(productToLoad))
+                                                    {
+                                                        double requiredTemperature = CoolingContainer.ProdcutsTemperatures[productToLoad];
+                                                        if (temperature > requiredTemperature)
+                                                        {
+                                                            coolingContainer.LoadContainer(amountOfProduct);
+                                                            Console.WriteLine($"Załadowano {productToLoad} w ilości {amountOfProduct} do kontenera {serialNumber}. Temperatura kontenera: {temperature}");
+                                                        }
+                                                        else
+                                                        {
+                                                            Console.WriteLine("Nie można załadować tego produktu, temperatura kontenera jest za niska.");
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("Nie znaleziono tego produktu.");
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Nieprawidłowa ilość produktu.");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Nieprawidłowa temperatura.");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Kontener nie jest typu CoolingContainer.");
+                                        }
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Nieznany typ kontenera.");
+                                        break;
                               }
                           }
                           else
                           {
-                              Console.WriteLine("Nie znany typ kontera");
+                              Console.WriteLine("Nieprawidłowy format numeru seryjnego.");
                           }
-
                       }
                       else
                       {
-                          Console.WriteLine("Nie znaleziono kontenera");
+                          Console.WriteLine("Nie znaleziono kontenera.");
                       }
-
                       break;
                   case "5":
                       Console.Clear();
+                      foreach (var ship in ships)
+                      {
+                          Console.WriteLine(ship.ToString());
+                      }
                       Console.WriteLine("Podaj nazwę statku: ");
                       string shipName = Console.ReadLine();
                       Ship foundShipToLoad = ships.Find(x => x.Name == shipName);
                       if (foundShipToLoad != null)
                       {
+                          foreach (var con in containers)
+                          {
+                              Console.WriteLine(con.ToString());
+                          }
                           Console.WriteLine("Podaj SerialNumber kontenera: ");
                           string serialNumberContainer = Console.ReadLine();
-                          Container foundContainerToLoad =
-                              containers.Find(x => x.SerialNumber == serialNumberContainer);
+                          Container foundContainerToLoad = containers.Find(x => x.SerialNumber == serialNumberContainer);
                           if (foundContainerToLoad != null)
                           {
                               foundShipToLoad.LoadShip(foundContainerToLoad);
                               containers.Remove(foundContainerToLoad);
+                              Console.WriteLine($"Załadowano konterner {serialNumberContainer}, na statek {shipName}");
                           }
                           else
                           {
@@ -269,11 +353,19 @@ public class Program
                       break;
                   case "6":
                       Console.Clear();
+                      foreach (var ship in ships)
+                      {
+                          Console.WriteLine(ship.ToString());
+                      }
                       Console.WriteLine("Podaj nazwę statku: ");
                       string shipToLoad = Console.ReadLine();
                       Ship shipToLoadListConainers = ships.Find(x => x.Name == shipToLoad);
                       if (shipToLoadListConainers != null)
                       {
+                          foreach (var con in containers)
+                          {
+                              Console.WriteLine(con.ToString());
+                          }
                           Console.WriteLine("Podaj SerialNumber kontenerów do załadowania na statek: ");
                           string inputContainer = Console.ReadLine();
                           string[] containerN = inputContainer.Split(',');
@@ -281,8 +373,8 @@ public class Program
 
                           foreach (var containerNumber in containerN)
                           {
-                              string trimmNumber = containerNumber.Split('-')[1];
-                              Container foundContainerToLoad = containers.Find(x => x.SerialNumber == trimmNumber);
+                              string trimmedNumber = containerNumber.Trim();
+                              Container foundContainerToLoad = containers.Find(x => x.SerialNumber == trimmedNumber);
 
                               if (foundContainerToLoad != null)
                               {
@@ -295,6 +387,7 @@ public class Program
                           }
 
                           shipToLoadListConainers.LoadShips(containerList);
+                          Console.WriteLine($"Kontenery zostały załadowane na statek: {shipToLoadListConainers.Name}");
                       }
                       else
                       {
@@ -314,18 +407,20 @@ public class Program
                       Container foundContainer2 = containers.Find(x => x.SerialNumber == serialNumber2);
                       if (foundContainer2 != null)
                       {
-                          if (serialNumber2.Split('-')[1] == "L" && foundContainer2 is LiquidContainer liquidContainer)
+                          if (foundContainer2 is LiquidContainer liquidContainer)
                           {
                               liquidContainer.EmptyContainer();
+                              Console.WriteLine($"Kontener {serialNumber2} został opróżniony");
                           }
-                          else if (serialNumber2.Split('-')[1] == "G" && foundContainer2 is GasContainer gasContainer)
+                          else if (foundContainer2 is GasContainer gasContainer)
                           {
                               gasContainer.EmptyContainer();
+                              Console.WriteLine($"Kontener {serialNumber2} został opróżniony");
                           }
-                          else if (serialNumber2.Split('-')[1] == "C" &&
-                                   foundContainer2 is CoolingContainer coolingContainer)
+                          else if (foundContainer2 is CoolingContainer coolingContainer)
                           {
                               coolingContainer.EmptyContainer();
+                              Console.WriteLine($"Kontener {serialNumber2} został opróżniony");
                           }
                           else
                           {
@@ -471,12 +566,21 @@ public class Program
                       break;
                   case "11":
                       Console.Clear();
+                      foreach (var conteiner in containers)
+                      {
+                          Console.WriteLine(conteiner.ToString());
+                      }
                       Console.WriteLine("Podaj SerialNumber kontenera: ");
                       string serialNumberC = Console.ReadLine();
                       Container foundContainerToInfo = containers.Find(x => x.SerialNumber == serialNumberC);
                       if (foundContainerToInfo != null)
                       {
-                          foundContainerToInfo.ToString();
+                          foreach (var container in containers)
+                          {
+                              Console.WriteLine("Informacje o kontenerze: ");
+                              Console.WriteLine(container.ToString() +"\n");
+                          }
+                         
                       }
                       else
                       {
@@ -485,16 +589,34 @@ public class Program
                       break;
                   case "12":
                       Console.Clear();
+                      foreach (var ship in ships)
+                      {
+                          Console.WriteLine(ship.ToString());
+                      }
                       Console.WriteLine("Podaj nazwę statku: ");
                       string shipNameToInfo = Console.ReadLine();
                       Ship foundShipNameToInfo = ships.Find(x => x.Name == shipNameToInfo);
                       if (foundShipNameToInfo != null)
                       {
-                          foundShipNameToInfo.ToString();
+                          Console.WriteLine("Informacje o statku i jego załadunku:");
+                          Console.WriteLine(foundShipNameToInfo.ToString());
+
+                          if (foundShipNameToInfo._containers.Any())
+                          {
+                              foreach (var container in foundShipNameToInfo._containers)
+                              {
+                              
+                                  Console.WriteLine(container.ToString() + "\n");
+                              }
+                          }
+                          else
+                          {
+                              Console.WriteLine("Aktualnie brak kontenerów\n");
+                          }
                       }
                       else
                       {
-                          Console.WriteLine("Nie znaleziono statku");
+                          Console.WriteLine("Nie znaleziono statku\n");
                       }
                       break;
                   case "13":
