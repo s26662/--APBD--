@@ -59,4 +59,9 @@ public class CoolingContainer : Container,IHazardNotifier
     {
         Console.WriteLine($"{SerialNumber}: {message}");
     }
+
+    public override string ToString()
+    {
+       return $"{SerialNumber} (Masa ładunku={WeightOfCargo}kg, Temperatura={Temperature}, Produkt={TypeOfProduct}, Wysokość={Height}cm, Głębokość={Depth}cm, Waga={ContainerWeight}kg, Maksymalna ładowność={MaxLoad}kg)";
+    }
 }

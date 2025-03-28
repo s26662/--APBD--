@@ -50,7 +50,7 @@ public class Container
         Console.WriteLine($"Kontener {SerialNumber} został opróżniony");
     }
 
-    public string ToString()
+    public virtual string ToString()
     {
         return
             $"{SerialNumber} (Masa ładunku={WeightOfCargo}kg, Wysokość={Height}cm, Głębokość={Depth}cm, Waga={ContainerWeight}kg, Maksymalna ładowność={MaxLoad}kg)";

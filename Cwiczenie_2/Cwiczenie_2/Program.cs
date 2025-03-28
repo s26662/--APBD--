@@ -168,19 +168,19 @@ public class Program
 
                       switch (type)
                       {
-                          case "L": // LiquidContainer
+                          case "L": 
                               Console.WriteLine("Czy kontener jest niebezpieczny? (true/false): ");
                               bool isHazardous = bool.Parse(Console.ReadLine());
                               newContainer = new LiquidContainer(isHazardous, height, depth, containerWeight, maxLoad);
                               break;
 
-                          case "G": // GasContainer
+                          case "G": 
                               Console.WriteLine("Ciśnienie kontenera: ");
                               double pressure = double.Parse(Console.ReadLine());
                               newContainer = new GasContainer(pressure, height, depth, containerWeight, maxLoad);
                               break;
 
-                          case "C": // CoolingContainer
+                          case "C": 
                               Console.WriteLine("Podaj Typ produktu: ");
                               string product = Console.ReadLine();
                               Console.WriteLine("Temperatura maksymalna dla kontenera: ");
@@ -217,13 +217,11 @@ public class Program
                                   case "L":
                                       if (foundContainer is LiquidContainer liquidContainer)
                                       {
-                                          Console.WriteLine("Podaj rodzaj płynu: ");
-                                          string liquid = Console.ReadLine();
                                           Console.WriteLine("Podaj ilość płynu: ");
                                           if (double.TryParse(Console.ReadLine(), out double amountOfLiquid))
                                           {
                                               liquidContainer.LoadContainer(amountOfLiquid);
-                                              Console.WriteLine($"Załadowano {liquid} w ilości {amountOfLiquid} do kontenera {serialNumber}");
+                                              Console.WriteLine($"Załadowano płyn w ilości: {amountOfLiquid} do kontenera {serialNumber}");
                                           }
                                           else
                                           {

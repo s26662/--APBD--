@@ -31,4 +31,9 @@ public class GasContainer : Container, IHazardNotifier
     {
         Console.WriteLine($"{SerialNumber}: {message}");
     }
+    
+    public override string ToString()
+    {
+        return $"{SerialNumber} (Masa ładunku={WeightOfCargo}kg, Ciśnienie={Pressure}atm , Wysokość={Height}cm, Głębokość={Depth}cm, Waga={ContainerWeight}kg, Maksymalna ładowność={MaxLoad}kg)";
+    }
 }
