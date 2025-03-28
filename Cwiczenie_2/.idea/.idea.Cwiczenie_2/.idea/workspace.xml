@@ -9,22 +9,10 @@
   <component name="ChangeListManager">
     <list default="true" id="65ddd87f-8ae4-4f4b-b6b8-0350f36c4cc2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Cwiczenie_2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Cwiczenie_2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/CoolingContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/CoolingContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/GasContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/GasContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cwiczenie_2/LiquidContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/LiquidContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/Ship.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/bin/Debug/net8.0/Cwiczenie_2.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/Cwiczenie_2.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/ref/Cwiczenie_2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/ref/Cwiczenie_2.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/refint/Cwiczenie_2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/Debug/net8.0/refint/Cwiczenie_2.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cwiczenie_2/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Cwiczenie_2/obj/rider.project.model.nuget.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,21 +35,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.Cwiczenie_2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.Cwiczenie_2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Cwiczenie_2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -92,6 +80,7 @@
       <updated>1742923959040</updated>
       <workItem from="1742923960281" duration="50000" />
       <workItem from="1742924624586" duration="1043000" />
+      <workItem from="1743138299222" duration="176000" />
     </task>
     <servers />
   </component>

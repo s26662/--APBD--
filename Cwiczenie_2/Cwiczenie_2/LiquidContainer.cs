@@ -16,10 +16,11 @@ public class LiquidContainer : Container, IHazardNotifier
 
        if (weight > maxAllowedLoad)
        {
-           //Dodanie IHazardNotifier
+          NotifyHazard($"Przekroczono limit masy w kontenerze {SerialNumber}. Dopuszczalny limit: {maxAllowedLoad}");
+          throw new OverfillExeption("Masa ładunku została przekroczona!");
        }
        
-       WeightOfCargo = weight;
+       base.LoadContainer(weight);
        Console.WriteLine($"Załadowano {weight}kg do kontenera {SerialNumber}");
     }
     
@@ -31,6 +32,6 @@ public class LiquidContainer : Container, IHazardNotifier
 
     public void NotifyHazard(string message)
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"{SerialNumber}: {message}");
     }
 }
