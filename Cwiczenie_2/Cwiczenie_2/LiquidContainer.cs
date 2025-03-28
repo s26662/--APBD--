@@ -24,9 +24,9 @@ public class LiquidContainer : Container, IHazardNotifier
        Console.WriteLine($"Załadowano {weight}kg do kontenera {SerialNumber}");
     }
     
-    public override void EmptyContainer()
+    public void EmptyContainer()
     {
-        WeightOfCargo *= 0.05;
+        base.EmptyContainer();
     }
 
 

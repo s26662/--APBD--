@@ -24,18 +24,39 @@ public class CoolingContainer : Container,IHazardNotifier
     {
         if(!ProdcutsTemperatures.ContainsKey(typeOfProduct))
         {
-            throw new ArgumentException("Producent nie jest obsługiwany");
+            NotifyHazard($"Nieznany produkt");
+            throw new OverfillExeption("Producent nie jest obsługiwany");
+            
         }
-
+        TypeOfProduct = typeOfProduct;
+        
         if (temperature < ProdcutsTemperatures[typeOfProduct])
         {
-            throw new ArgumentException($"Temperatura nie może być niższa nic {ProdcutsTemperatures[typeOfProduct]}C, dla produktu {typeOfProduct}");
+            NotifyHazard($"Temperatura kontenera {SerialNumber} jest zbyt zniska dla produktu{typeOfProduct}");
+            throw new OverfillExeption($"Temperatura nie może być niższa nic {ProdcutsTemperatures[typeOfProduct]}C, dla produktu {typeOfProduct}");
         }
+        Temperature = temperature;
     }
     
+    public override void LoadContainer(double weight)
+    {
+        if (weight > MaxLoad)
+        {
+            NotifyHazard($"Przekroczono limit masy w kontenerze {SerialNumber}. Dopuszczalny limit: {MaxLoad}");
+            throw new OverfillExeption("Masa ładunku została przekroczona!");
+        }
+       
+        base.LoadContainer(weight);
+        Console.WriteLine($"Załadowano {weight} kg do kontenera {SerialNumber}");
+    }
+    
+    public void EmptyContainer()
+    {
+        base.EmptyContainer();
+    }
 
     public void NotifyHazard(string message)
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"{SerialNumber}: {message}");
     }
 }
