@@ -1,4 +1,5 @@
-﻿using Tutorial3.Models;
+﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using Tutorial3.Models;
 
 public class EmpDeptSalgradeTests
 {
@@ -9,7 +10,7 @@ public class EmpDeptSalgradeTests
     {
         var emps = Database.GetEmps();
 
-        List<Emp> result = null; 
+        List<Emp> result = emps.Where(c => c.Job == "SALESMAN").ToList(); 
 
         Assert.Equal(2, result.Count);
         Assert.All(result, e => Assert.Equal("SALESMAN", e.Job));
