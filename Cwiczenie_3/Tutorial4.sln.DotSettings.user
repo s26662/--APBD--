@@ -5,5 +5,6 @@
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::EmpDeptSalgradeTests.ShouldReturnDept30EmpsOrderedBySalaryDesc&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::EmpDeptSalgradeTests.ShouldReturnEmployeesFromChicago&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::EmpDeptSalgradeTests.ShouldSelectNamesAndSalaries&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::EmpDeptSalgradeTests.ShouldJoinEmployeesWithDepartments&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
