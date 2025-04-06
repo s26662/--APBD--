@@ -11,5 +11,7 @@
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::EmpDeptSalgradeTests.ShouldMatchEmployeeToSalaryGrade&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::EmpDeptSalgradeTests.ShouldCalculateAverageSalaryPerDept&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::EmpDeptSalgradeTests.ShouldReturnEmployeesEarningMoreThanDeptAverage&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::Tutorial3Tests.AdvancedEmpDeptTests.ShouldReturnMaxSalary&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::Tutorial3Tests.AdvancedEmpDeptTests.ShouldReturnMinSalaryInDept30&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

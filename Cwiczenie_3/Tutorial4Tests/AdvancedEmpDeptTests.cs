@@ -9,7 +9,7 @@ public class AdvancedEmpDeptTests
     {
         var emps = Database.GetEmps();
 
-        decimal? maxSalary = null; 
+        decimal? maxSalary = emps.Max(emp => emp.Sal); 
 
         Assert.Equal(5000, maxSalary);
     }
@@ -21,7 +21,7 @@ public class AdvancedEmpDeptTests
     {
         var emps = Database.GetEmps();
 
-        decimal? minSalary = null;
+        decimal? minSalary = emps.Where(e => e.DeptNo == 30).Min(e => e.Sal);
 
         Assert.Equal(1250, minSalary);
     }
