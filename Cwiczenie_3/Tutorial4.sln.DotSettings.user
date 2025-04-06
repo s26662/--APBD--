@@ -17,5 +17,7 @@
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::Tutorial3Tests.AdvancedEmpDeptTests.ShouldReturnDistinctJobTitles&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::Tutorial3Tests.AdvancedEmpDeptTests.ShouldReturnEmployeesWithManagers&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::Tutorial3Tests.AdvancedEmpDeptTests.AllEmployeesShouldEarnMoreThan500&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::Tutorial3Tests.AdvancedEmpDeptTests.ShouldFindAnyWithCommissionOver400&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::73439BA3-64B9-4BEC-A837-8A5044D3E5BB::net8.0::Tutorial3Tests.AdvancedEmpDeptTests.ShouldReturnEmployeeManagerPairs&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
