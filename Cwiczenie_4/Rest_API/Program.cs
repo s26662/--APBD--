@@ -44,6 +44,7 @@ List<Animal> animals =
 List < Visits > visitsList = [
 new Visits()
 {
+    Id = 1,
     Date = DateTime.Now,
     Animal = new Animal()
     {
@@ -72,6 +73,19 @@ app.MapPost("/animals/AddAnimal", (Animal animal) =>
     return Results.BadRequest("Animal already exists");
 });
 
+//Post => Add new visit
+app.MapPost("/visitsList/AddNewVisit", (Visits visit) =>
+{
+    var foundVisit = visitsList.Find(v => v.Id == visit.Id);
+    if (foundVisit == null)
+    {
+        visitsList.Add(visit);
+        return Results.Created($"/visitsList/{visit.Id}", visit);
+    }
+    
+    return Results.BadRequest("Visit already exists");
+});
+
 //Get => Show list Animal
 app.MapGet("/animals/GetListOfAllAnimals", () => animals);
 
@@ -96,6 +110,17 @@ app.MapGet("/animals/GetAnimalByName/{name}", (string name) =>
     }
     
     return Results.Ok(foundAnimal);
+});
+
+//Get => Find visit for animal
+app.MapGet("/visits/GetListOfVisits/{Id}", (int id) =>
+{
+    var foundVisit = visitsList.Where(v => v.Animal.Id == id).ToList();
+    if (!foundVisit.Any())
+    {
+        return Results.NotFound("Visit not found");
+    }
+    return Results.Ok(foundVisit);
 });
 
 //Delete => Delete animal by id
@@ -125,17 +150,6 @@ app.MapPut("/animals/EditData", (Animal animal) =>
     foundAnimal.Mass = animal.Mass;
     
     return Results.Ok("Animal updated");
-});
-
-//Get => Find visit for animal
-app.MapGet("/visits/GetListOfVisits/{Id}", (int id) =>
-{
-    var foundVisit = visitsList.Where(v => v.Animal.Id == id).ToList();
-    if (!foundVisit.Any())
-    {
-        return Results.NotFound("Visit not found");
-    }
-    return Results.Ok(foundVisit);
 });
 
 app.Run();
