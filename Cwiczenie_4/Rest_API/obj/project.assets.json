@@ -466,11 +466,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\olafc\\Desktop\\--APBD--\\Cwiczenie_4\\Rest_API\\Rest_API\\Rest_API.csproj",
+      "projectUniqueName": "C:\\Users\\olafc\\Desktop\\--APBD--\\Cwiczenie_4\\Rest_API\\Rest_API.csproj",
       "projectName": "Rest_API",
-      "projectPath": "C:\\Users\\olafc\\Desktop\\--APBD--\\Cwiczenie_4\\Rest_API\\Rest_API\\Rest_API.csproj",
+      "projectPath": "C:\\Users\\olafc\\Desktop\\--APBD--\\Cwiczenie_4\\Rest_API\\Rest_API.csproj",
       "packagesPath": "C:\\Users\\olafc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\olafc\\Desktop\\--APBD--\\Cwiczenie_4\\Rest_API\\Rest_API\\obj\\",
+      "outputPath": "C:\\Users\\olafc\\Desktop\\--APBD--\\Cwiczenie_4\\Rest_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
