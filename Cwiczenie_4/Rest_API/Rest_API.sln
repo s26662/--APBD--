@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rest_API", "Rest_API\Rest_API.csproj", "{29730C98-7AAE-422B-8144-54BFD5542DCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29730C98-7AAE-422B-8144-54BFD5542DCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29730C98-7AAE-422B-8144-54BFD5542DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29730C98-7AAE-422B-8144-54BFD5542DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29730C98-7AAE-422B-8144-54BFD5542DCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
