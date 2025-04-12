@@ -40,5 +40,17 @@ List<Animal> animals =
 ];
 
 app.MapGet("/animals/GetListOfAllAnimals", () => animals);
+app.MapGet("/animals/GetAnimalAtId/{id}", (int id) =>
+{
+    var foundAnimal = animals.Find(a => a.Id == id);
+    if (foundAnimal == null)
+    {
+        return Results.NotFound("Animal not found");
+    }
+    return Results.Ok(foundAnimal);
+});
+
+
+
 
 app.Run();
