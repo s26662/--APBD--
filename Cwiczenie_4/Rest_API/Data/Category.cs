@@ -5,5 +5,6 @@ public enum Category
     Dog,
     Cat,
     Rabbit,
-    Another
+    Another,
+    
 }
