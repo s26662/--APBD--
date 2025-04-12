@@ -79,4 +79,19 @@ app.MapGet("/animals/GetAnimalByName/{name}", (string name) =>
     return Results.Ok(foundAnimal);
 });
 
+//Delete => Delete animal by id
+app.MapDelete("/animals/DeleteAnimal/{Id}", (int id) =>
+{
+    var foundAnimal = animals.Find(a => a.Id == id);
+    if (foundAnimal != null)
+    {
+        animals.Remove(foundAnimal);
+        return Results.Ok("Animal deleted");
+    }
+    
+    return Results.NotFound("Animal by id not found");
+});
+
+
+
 app.Run();
