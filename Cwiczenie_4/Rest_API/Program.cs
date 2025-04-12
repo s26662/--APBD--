@@ -18,6 +18,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//List of Animals
 List<Animal> animals =
 [
     new Animal()
@@ -26,7 +27,7 @@ List<Animal> animals =
         Name = "Mike",
         Mass = 15.0,
         Color = "Black",
-        Category = Category.Dog,
+        Category = "Dog",
     },
     new Animal()
     {
@@ -34,13 +35,16 @@ List<Animal> animals =
         Name = "Milk",
         Mass = 8.0,
         Color = "Brown",
-        Category = Category.Cat,
+        Category = "Cat",
     }
 
 ];
 
+//Get => Show list Animal
 app.MapGet("/animals/GetListOfAllAnimals", () => animals);
-app.MapGet("/animals/GetAnimalAtId/{id}", (int id) =>
+
+//Get => Find Animal by id
+app.MapGet("/animals/GetAnimalById{Id}", (int id) =>
 {
     var foundAnimal = animals.Find(a => a.Id == id);
     if (foundAnimal == null)
@@ -50,7 +54,18 @@ app.MapGet("/animals/GetAnimalAtId/{id}", (int id) =>
     return Results.Ok(foundAnimal);
 });
 
-
+//Post => Add animal to list
+app.MapPost("/animals/AddAnimal", (Animal animal) =>
+{
+    var foundAnimal = animals.Find(a => a.Id == animal.Id);
+    if (foundAnimal == null)
+    {
+        animals.Add(animal);
+        return Results.Created($"/animals/{animal.Id}", animal);
+    }
+    
+    return Results.BadRequest("Animal already exists");
+});
 
 
 app.Run();

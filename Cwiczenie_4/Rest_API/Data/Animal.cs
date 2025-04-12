@@ -1,4 +1,6 @@
-﻿namespace Rest_API.Data;
+﻿using System.Text.Json.Serialization;
+
+namespace Rest_API.Data;
 
 public class Animal
 {
@@ -6,5 +8,6 @@ public class Animal
     public string Name { get; set; }
     public double Mass { get; set; }
     public string Color { get; set; }
-    public Category Category { get; set; }
+    public string Category { get; set; }
+
 }
