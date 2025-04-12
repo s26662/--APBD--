@@ -92,6 +92,20 @@ app.MapDelete("/animals/DeleteAnimal/{Id}", (int id) =>
     return Results.NotFound("Animal by id not found");
 });
 
-
+//Put => Editing data for animal
+app.MapPut("/animals/EditData", (Animal animal) =>
+{
+    var foundAnimal = animals.Find(a => a.Id == animal.Id);
+    if (foundAnimal == null)
+    {
+        return Results.NotFound("Animal not found");
+    }
+    
+    foundAnimal.Name = animal.Name;
+    foundAnimal.Color = animal.Color;
+    foundAnimal.Mass = animal.Mass;
+    
+    return Results.Ok("Animal updated");
+});
 
 app.Run();
