@@ -40,20 +40,6 @@ List<Animal> animals =
 
 ];
 
-//Get => Show list Animal
-app.MapGet("/animals/GetListOfAllAnimals", () => animals);
-
-//Get => Find Animal by id
-app.MapGet("/animals/GetAnimalById{Id}", (int id) =>
-{
-    var foundAnimal = animals.Find(a => a.Id == id);
-    if (foundAnimal == null)
-    {
-        return Results.NotFound("Animal not found");
-    }
-    return Results.Ok(foundAnimal);
-});
-
 //Post => Add animal to list
 app.MapPost("/animals/AddAnimal", (Animal animal) =>
 {
@@ -67,5 +53,30 @@ app.MapPost("/animals/AddAnimal", (Animal animal) =>
     return Results.BadRequest("Animal already exists");
 });
 
+//Get => Show list Animal
+app.MapGet("/animals/GetListOfAllAnimals", () => animals);
+
+//Get => Find Animal by id
+app.MapGet("/animals/GetAnimalById/{id}", (int id) =>
+{
+    var foundAnimal = animals.Find(a => a.Id == id);
+    if (foundAnimal == null)
+    {
+        return Results.NotFound("Animal not found");
+    }
+    return Results.Ok(foundAnimal);
+});
+
+//Get => Find animal by name
+app.MapGet("/animals/GetAnimalByName/{name}", (string name) =>
+{
+    var foundAnimal = animals.Find(a => a.Name == name);
+    if (foundAnimal == null)
+    {
+        return Results.NotFound("Animal by name not found");
+    }
+    
+    return Results.Ok(foundAnimal);
+});
 
 app.Run();
