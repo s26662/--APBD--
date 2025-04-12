@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Rest_API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,24 @@ List<Animal> animals =
         Color = "Brown",
         Category = "Cat",
     }
+
+];
+
+List < Visits > visitsList = [
+new Visits()
+{
+    Date = DateTime.Now,
+    Animal = new Animal()
+    {
+        Id = 1,
+        Name = "Mike",
+        Mass = 15.0,
+        Color = "Black",
+        Category = "Dog",
+    },
+    Description = "Yearly visit",
+    Price = 100.0
+}
 
 ];
 
@@ -106,6 +125,17 @@ app.MapPut("/animals/EditData", (Animal animal) =>
     foundAnimal.Mass = animal.Mass;
     
     return Results.Ok("Animal updated");
+});
+
+//Get => Find visit for animal
+app.MapGet("/visits/GetListOfVisits/{Id}", (int id) =>
+{
+    var foundVisit = visitsList.Where(v => v.Animal.Id == id).ToList();
+    if (foundVisit == null)
+    {
+        return Results.NotFound("Visit not found");
+    }
+    return Results.Ok(foundVisit);
 });
 
 app.Run();
