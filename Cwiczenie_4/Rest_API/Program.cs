@@ -131,7 +131,7 @@ app.MapPut("/animals/EditData", (Animal animal) =>
 app.MapGet("/visits/GetListOfVisits/{Id}", (int id) =>
 {
     var foundVisit = visitsList.Where(v => v.Animal.Id == id).ToList();
-    if (foundVisit == null)
+    if (!foundVisit.Any())
     {
         return Results.NotFound("Visit not found");
     }
