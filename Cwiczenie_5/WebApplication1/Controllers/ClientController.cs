@@ -13,7 +13,7 @@ public class ClientController : ControllerBase
     public IActionResult Get()
     {
 
-        var connectionString = new SqlConnection();
+        var connectionString = new SqlConnection("ConnectionDB");
         
         var command = new SqlCommand();
         
