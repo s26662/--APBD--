@@ -1,6 +1,23 @@
-﻿namespace WebApplication1.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 
-public class ClientController
+namespace WebApplication1.Controllers;
+
+
+[Route("api/[controller]")]
+[ApiController]
+public class ClientController : ControllerBase
 {
-    
+
+    [HttpGet]
+    public IActionResult Get()
+    {
+
+        var connectionString = new SqlConnection();
+        
+        var command = new SqlCommand();
+        
+        return Ok();
+    }
+
 }
