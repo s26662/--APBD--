@@ -113,9 +113,39 @@ public class ClientController : ControllerBase
 
         }
         
-
-
         return Ok(tripsClients);
     }
-    
+
+
+    [HttpPost]
+    public async Task<IActionResult> CreateClientAsync(CreateClientDTO newClient, CancellationToken cancellationToken)
+    {
+        string connectionString = _configuration.GetConnectionString("ConnectionDB");
+        
+        await using var connection = new SqlConnection(connectionString);
+        await using var command = new SqlCommand();
+        
+        command.Connection = connection;
+        
+        command.CommandText = @" Insert into Client (FirstName, LastName, Email, Telephone, Pesel)
+                    Values (@FirstName, @LastName, @Email, @Telephone, @Pesel);
+                    Select SCOPE_IDENTITY();";
+        
+        command.Parameters.AddWithValue("@FirstName", newClient.FirstName);
+        command.Parameters.AddWithValue("@LastName", newClient.LastName);
+        command.Parameters.AddWithValue("@Email", newClient.Email);
+        command.Parameters.AddWithValue("@Telephone", newClient.Telephone);
+        command.Parameters.AddWithValue("@Pesel", newClient.Pesel);
+        
+
+        await connection.OpenAsync(cancellationToken);
+        
+        var clientid = await command.ExecuteScalarAsync(cancellationToken);
+        var newClientId = Convert.ToInt32(clientid);
+        
+        
+        return Created($"/Client/{clientid}", new {message = "Client was created",IdClient = newClientId});
+    }
+
+
 }
