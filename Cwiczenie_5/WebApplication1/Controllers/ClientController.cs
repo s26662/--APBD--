@@ -10,14 +10,15 @@ public class ClientController : ControllerBase
 {
 
     [HttpGet]
-    public IActionResult Get()
+    public async Task<IActionResult> Get()
     {
 
         var connectionString = new SqlConnection("ConnectionDB");
         
         var command = new SqlCommand();
         
+        
         return Ok();
     }
-
+    
 }
