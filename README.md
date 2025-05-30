@@ -40,7 +40,7 @@ Dodaje nowego klienta. Wymagane dane:
   "firstName": "Anna",
   "lastName": "Kowalska",
   "email": "anna@example.com",
-  "telephone": "123456789",
+  "telephone": "+48123456789",
   "pesel": "90010112345"
 }
 ```
