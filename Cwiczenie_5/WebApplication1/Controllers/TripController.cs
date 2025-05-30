@@ -65,7 +65,11 @@ public class TripController : ControllerBase
         
         foreach (var trip in trips )
         {
-            command2.CommandText = @"Select c.IdCountry, c.Name From Country c join Country_Trip t on c.IdCountry = t.IdCountry where t.IdTrip = @IdTrip";
+            command2.CommandText = @"
+                           Select c.IdCountry, c.Name 
+                           From Country c 
+                                join Country_Trip t on c.IdCountry = t.IdCountry 
+                            where t.IdTrip = @IdTrip";
             command2.Parameters.Clear();
             command2.Parameters.AddWithValue("@IdTrip", trip.IdTrip);
                 
@@ -86,6 +90,5 @@ public class TripController : ControllerBase
         
         return Ok(trips);
     }
-
-
+    
 }
