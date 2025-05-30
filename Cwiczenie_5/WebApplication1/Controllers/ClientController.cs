@@ -149,7 +149,7 @@ public class ClientController : ControllerBase
     }
 
     [HttpPut("{id}/trips/{tripId}")]
-    public async Task<IActionResult> UpdateClientTripAsync(int id, int tripId, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateClientTripAsync(int clientId, int tripId, CancellationToken cancellationToken)
     {
         string connectionString = _configuration.GetConnectionString("ConnectionDB");
         
@@ -161,11 +161,11 @@ public class ClientController : ControllerBase
         
         
         command.CommandText = "Select 1 from Client where IdClient = @ClientId";
-        command.Parameters.AddWithValue("@ClientId", id);
+        command.Parameters.AddWithValue("@ClientId", clientId);
         var clientExists = await command.ExecuteScalarAsync(cancellationToken) != null;
 
         if (!clientExists)
-            return NotFound($"Client with ID {id} does not exist.");
+            return NotFound($"Client with ID {clientId} does not exist.");
         
         
         command.CommandText = "Select MaxPeople from Trip where IdTrip = @TripId";
@@ -188,7 +188,7 @@ public class ClientController : ControllerBase
         
         command.CommandText = "Select 1 from Client_Trip where IdClient = @ClientId and IdTrip = @TripId";
         command.Parameters.Clear();
-        command.Parameters.AddWithValue("@ClientId", id);
+        command.Parameters.AddWithValue("@ClientId", clientId);
         command.Parameters.AddWithValue("@TripId", tripId);
         
         var alreadyRegistered = await command.ExecuteScalarAsync(cancellationToken) != null;
@@ -200,7 +200,7 @@ public class ClientController : ControllerBase
         Insert Into Client_Trip (IdClient, IdTrip, RegisteredAt, PaymentDate)
         Values (@ClientId, @TripId, @RegisteredAt, NULL)";
         
-        command.Parameters.AddWithValue("@IdClient", id);
+        command.Parameters.AddWithValue("@IdClient", clientId);
         command.Parameters.AddWithValue("@IdTrip", tripId);
         
         int day = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
@@ -213,6 +213,40 @@ public class ClientController : ControllerBase
             : StatusCode(500, "Failed to register client.");
     }
 
+
+    [HttpDelete("{id}/trips/{tripId}")]
+    public async Task<IActionResult> DeleteClientAsync(int clientId, int tripId, CancellationToken cancellationToken)
+    {
+        string connectionString = _configuration.GetConnectionString("ConnectionDB");
+        await using var connection = new SqlConnection(connectionString);
+        await using var command = new SqlCommand();
+        
+        command.Connection = connection;
+        await connection.OpenAsync(cancellationToken);
+        
+        var checkCmd = new SqlCommand("Select COUNT(*) From Client_Trip Where IdClient = @IdClient And IdTrip = @IdTrip", connection);
+        checkCmd.Parameters.AddWithValue("@IdClient", clientId);
+        checkCmd.Parameters.AddWithValue("@IdTrip", tripId);
+
+        var exists = (int)await checkCmd.ExecuteScalarAsync(cancellationToken);
+        if (exists == 0)
+        {
+            return NotFound($"Client with id {clientId} is not registered for trip {tripId}.");
+        }
+        
+        var deleteCmd = new SqlCommand("Delete From Client_Trip Where IdClient = @IdClient And IdTrip = @IdTrip", connection);
+        deleteCmd.Parameters.AddWithValue("@IdClient", clientId);
+        deleteCmd.Parameters.AddWithValue("@IdTrip", tripId);
+
+        var rowsAffected = await deleteCmd.ExecuteNonQueryAsync(cancellationToken);
+        if (rowsAffected == 0)
+        {
+            return StatusCode(500, "An error occurred while deleting the client from the trip.");
+        }
+        
+        
+        return Ok($"Client {clientId} was removed from trip {tripId}.");
+    }
 
 
 
