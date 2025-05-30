@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using WebApplication1.Model;
 using WebApplication1.Model.DTO;
@@ -146,6 +147,73 @@ public class ClientController : ControllerBase
         
         return Created($"/Client/{clientid}", new {message = "Client was created",IdClient = newClientId});
     }
+
+    [HttpPut("{id}/trips/{tripId}")]
+    public async Task<IActionResult> UpdateClientTripAsync(int id, int tripId, CancellationToken cancellationToken)
+    {
+        string connectionString = _configuration.GetConnectionString("ConnectionDB");
+        
+        await using var connection = new SqlConnection(connectionString);
+        await using var command = new SqlCommand();
+        
+        command.Connection = connection;
+        await connection.OpenAsync(cancellationToken);
+        
+        
+        command.CommandText = "Select 1 from Client where IdClient = @ClientId";
+        command.Parameters.AddWithValue("@ClientId", id);
+        var clientExists = await command.ExecuteScalarAsync(cancellationToken) != null;
+
+        if (!clientExists)
+            return NotFound($"Client with ID {id} does not exist.");
+        
+        
+        command.CommandText = "Select MaxPeople from Trip where IdTrip = @TripId";
+        command.Parameters.Clear();
+        command.Parameters.AddWithValue("@TripId", tripId);
+        var maxPeopleObj = await command.ExecuteScalarAsync(cancellationToken);
+
+        if (maxPeopleObj == null)
+            return NotFound($"Trip with ID {tripId} does not exist.");
+        
+        var maxPeople = Convert.ToInt32(maxPeopleObj);
+        
+        command.CommandText = "Select COUNT(*) from Client_Trip where IdTrip = @TripId";
+        command.Parameters.Clear();
+        command.Parameters.AddWithValue("@TripId", tripId);
+        var currentPeople = (int)await command.ExecuteScalarAsync(cancellationToken);
+
+        if (currentPeople >= maxPeople)
+            return BadRequest("Trip is already full.");
+        
+        command.CommandText = "Select 1 from Client_Trip where IdClient = @ClientId and IdTrip = @TripId";
+        command.Parameters.Clear();
+        command.Parameters.AddWithValue("@ClientId", id);
+        command.Parameters.AddWithValue("@TripId", tripId);
+        
+        var alreadyRegistered = await command.ExecuteScalarAsync(cancellationToken) != null;
+
+        if (alreadyRegistered)
+            return Conflict("Client is already registered for this trip.");
+        
+        command.CommandText = @"
+        Insert Into Client_Trip (IdClient, IdTrip, RegisteredAt, PaymentDate)
+        Values (@ClientId, @TripId, @RegisteredAt, NULL)";
+        
+        command.Parameters.AddWithValue("@IdClient", id);
+        command.Parameters.AddWithValue("@IdTrip", tripId);
+        
+        int day = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+        command.Parameters.AddWithValue("@RegisteredAt", day);
+
+        var result = await command.ExecuteNonQueryAsync(cancellationToken);
+
+        return result > 0
+            ? Ok("Client successfully registered for the trip.")
+            : StatusCode(500, "Failed to register client.");
+    }
+
+
 
 
 }
