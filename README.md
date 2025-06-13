@@ -53,3 +53,24 @@ Zwraca:
 - Status 201 Created
 - ID nowo utworzonego klienta
 
+#### ✅ Put `/api/clients/{id}/trips/{tripId}`
+Rejestruje klienta na wycieczkę:
+
+Warunki:
+- Klient i wycieczka muszą istnieć
+- Liczba uczestników nie może przekroczyć limitu
+
+Działanie:
+- Wstawia rekord do tabeli Client_Trip z datą RegisteredAt
+
+#### ✅ Delete `/api/clients/{id}/trips/{tripId}`
+Usuwa przypisanie klienta do wycieczki.
+
+Warunki:
+- Sprawdza, czy klient jest zapisany na daną wycieczkę
+
+Działanie:
+- Usuwa rekord z Client_Trip
+
+Zwraca:
+- Status 200 OK lub odpowiedni błąd
