@@ -4,6 +4,7 @@ using Cwiczenie_6.App.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cwiczenie_6.App.Migrations
 {
     [DbContext(typeof(PharmaDbContex))]
-    partial class PharmaDbContexModelSnapshot : ModelSnapshot
+    [Migration("20250613202030_AddedMedicamentTable")]
+    partial class AddedMedicamentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,34 +50,6 @@ namespace Cwiczenie_6.App.Migrations
                     b.HasKey("IdDoctor");
 
                     b.ToTable("Doctors");
-                });
-
-            modelBuilder.Entity("Cwiczenie_6.App.Model.Medicament", b =>
-                {
-                    b.Property<int>("IdMedicament")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMedicament"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("IdMedicament");
-
-                    b.ToTable("Medicaments");
                 });
 
             modelBuilder.Entity("Cwiczenie_6.App.Model.Patient", b =>
@@ -132,29 +107,6 @@ namespace Cwiczenie_6.App.Migrations
                     b.ToTable("Prescriptions");
                 });
 
-            modelBuilder.Entity("Cwiczenie_6.App.Model.PrescriptionMedicament", b =>
-                {
-                    b.Property<int>("IdMedicament")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdPrescription")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Details")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("Dose")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdMedicament", "IdPrescription");
-
-                    b.HasIndex("IdPrescription");
-
-                    b.ToTable("PrescriptionMedicaments");
-                });
-
             modelBuilder.Entity("Cwiczenie_6.App.Model.Prescription", b =>
                 {
                     b.HasOne("Cwiczenie_6.App.Model.Doctor", "Doctor")
@@ -174,43 +126,14 @@ namespace Cwiczenie_6.App.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("Cwiczenie_6.App.Model.PrescriptionMedicament", b =>
-                {
-                    b.HasOne("Cwiczenie_6.App.Model.Medicament", "Medicament")
-                        .WithMany("PrescriptionMedicaments")
-                        .HasForeignKey("IdMedicament")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Cwiczenie_6.App.Model.Prescription", "Prescription")
-                        .WithMany("PrescriptionMedicaments")
-                        .HasForeignKey("IdPrescription")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Medicament");
-
-                    b.Navigation("Prescription");
-                });
-
             modelBuilder.Entity("Cwiczenie_6.App.Model.Doctor", b =>
                 {
                     b.Navigation("Prescriptions");
                 });
 
-            modelBuilder.Entity("Cwiczenie_6.App.Model.Medicament", b =>
-                {
-                    b.Navigation("PrescriptionMedicaments");
-                });
-
             modelBuilder.Entity("Cwiczenie_6.App.Model.Patient", b =>
                 {
                     b.Navigation("Prescriptions");
-                });
-
-            modelBuilder.Entity("Cwiczenie_6.App.Model.Prescription", b =>
-                {
-                    b.Navigation("PrescriptionMedicaments");
                 });
 #pragma warning restore 612, 618
         }
