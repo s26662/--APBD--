@@ -4,6 +4,7 @@ using Cwiczenie_6.App.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cwiczenie_6.App.Migrations
 {
     [DbContext(typeof(PharmaDbContex))]
-    partial class PharmaDbContexModelSnapshot : ModelSnapshot
+    [Migration("20250613195503_AddedDoctorTable")]
+    partial class AddedDoctorTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,64 +76,6 @@ namespace Cwiczenie_6.App.Migrations
                     b.HasKey("IdPatient");
 
                     b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("Cwiczenie_6.App.Model.Prescription", b =>
-                {
-                    b.Property<int>("IdPrescription")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPrescription"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdDoctor")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdPatient")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdPrescription");
-
-                    b.HasIndex("IdDoctor");
-
-                    b.HasIndex("IdPatient");
-
-                    b.ToTable("Prescriptions");
-                });
-
-            modelBuilder.Entity("Cwiczenie_6.App.Model.Prescription", b =>
-                {
-                    b.HasOne("Cwiczenie_6.App.Model.Doctor", "Doctor")
-                        .WithMany("Prescriptions")
-                        .HasForeignKey("IdDoctor")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Cwiczenie_6.App.Model.Patient", "Patient")
-                        .WithMany("Prescriptions")
-                        .HasForeignKey("IdPatient")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("Cwiczenie_6.App.Model.Doctor", b =>
-                {
-                    b.Navigation("Prescriptions");
-                });
-
-            modelBuilder.Entity("Cwiczenie_6.App.Model.Patient", b =>
-                {
-                    b.Navigation("Prescriptions");
                 });
 #pragma warning restore 612, 618
         }

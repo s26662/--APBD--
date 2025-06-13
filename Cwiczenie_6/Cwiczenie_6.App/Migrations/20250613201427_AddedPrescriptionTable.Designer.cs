@@ -4,6 +4,7 @@ using Cwiczenie_6.App.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cwiczenie_6.App.Migrations
 {
     [DbContext(typeof(PharmaDbContex))]
-    partial class PharmaDbContexModelSnapshot : ModelSnapshot
+    [Migration("20250613201427_AddedPrescriptionTable")]
+    partial class AddedPrescriptionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
