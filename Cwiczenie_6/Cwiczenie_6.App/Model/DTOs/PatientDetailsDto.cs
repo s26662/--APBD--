@@ -1,6 +1,6 @@
 ﻿namespace Cwiczenie_6.App.Model.DTOs;
 
-public class PatientDetails
+public class PatientDetailsDto
 {
     public int IdPatient { get; set; }
     public string FirstName { get; set; }

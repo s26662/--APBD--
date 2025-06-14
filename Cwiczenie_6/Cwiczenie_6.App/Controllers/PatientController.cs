@@ -1,9 +1,8 @@
 ﻿using Cwiczenie_6.App.DAL;
-using Cwiczenie_6.App.Model;
 using Cwiczenie_6.App.Model.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
+
 
 namespace Cwiczenie_6.App.Controllers;
 
@@ -20,7 +19,7 @@ public class PatientController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<PatientDetails> GetPatient(CancellationToken cancellationToken, int id)
+    public async Task<PatientDetailsDto> GetPatient(CancellationToken cancellationToken, int id)
     {
         var data = await _dbContext.Patients
             .Include(p => p.Prescriptions)
@@ -35,7 +34,7 @@ public class PatientController : ControllerBase
             throw new KeyNotFoundException("No Patient found");
         }
 
-        return new PatientDetails
+        return new PatientDetailsDto
         {
             IdPatient = data.IdPatient,
             FirstName = data.FirstName,
